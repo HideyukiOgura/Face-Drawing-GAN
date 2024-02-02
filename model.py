@@ -173,6 +173,18 @@ class Generator(nn.Module):
         out =self.model_end(out)
 
         return out
+    
+    def middle_out(self, x):
+        out = self.model0(x)
+        out = self.model1(out) #1/2
+        out = self.model2(out) #1/4
+        out = self.res2[-1].conv_block2(out)
+
+        return out
+    
+    def atten(x):
+        out = mpatten(x)
+        return out
 
 # Define a resnet block
 class ResnetBlock(nn.Module):
